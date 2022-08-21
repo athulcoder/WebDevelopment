@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap');
+
+    #setting {
+        width: 91%;
+        height: 30rem;
+        background: black;
+        margin: auto;
+        margin-top: auto;
+        margin-top: 5rem;
+        color: white;
+    }
+
+    .pr_box {
+        background: transparent;
+        height: 20rem;
+        width: 30rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 2rem;
+        font-size: 1rem;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    label {
+        color: beige;
+    }
+
+    .head {
+        color: white;
+        font-size: 2rem;
+        font-family: 'Montserrat', sans-serif;
+        margin: 0 2rem;
+        padding: 1rem 1rem;
+
+    }
+
+    #c_pic {
+        width: 5rem;
+        background-color: white;
+        border-radius: 50%;
+        border: 2px solid black;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+    }
+
+    .rws {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .rws input,
+    .rws p {
+        font-family: 'Mukta', sans-serif;
+        font-weight: bold;
+        background-color: transparent;
+        color: #fff;
+        outline: none;
+        border: none;
+
+    }
+
+    .rws span {
+        color: rgb(212, 212, 212);
+        font-family: 'Mukta', sans-serif;
+        padding-right: 1rem;
+
+    }
+
+    .rws i {
+        margin-left: .4rem;
+    }
+
+    .rws i:hover {
+        cursor: pointer;
+        color: bisque;
+    }
+
+    #save_btn {
+        background-color: blue;
+        width: 6rem;
+    }
+
+    #cancel_btn {
+        background-color: red;
+        margin-left: 2rem;
+        width: 6rem;
+    }
+
+    #save_btn,
+    #cancel_btn:hover {
+        cursor: pointer;
+    }
+
+
+
+    #file {
+        display: none;
+    }
+
+    #upload_btn {
+        cursor: pointer;
+        position: relative;
+        bottom: 16px;
+        left: -29px;
+        color: white;
+        font-size: 1.2rem;
+    }
+
+    #upload_btn:hover {
+        color: rgb(183, 183, 183);
+    }
+</style>
+
+<body>
+    <section id="setting">
+        <h1 class="head">Account</h1>
+        <hr>
+        <h3 style="font-size:1.2rem; color:rgb(111, 110, 107)" class="head">Profile</h3>
+
+        <div class="pr_box">
+            <form action="" method="post">
+                <div class="dp_box">
+                    <img src="./img/dp.png" alt="" id="c_pic">
+                    <label for="file"><i class="fas fa-camera" id="upload_btn"></i></label>
+                    <input type="file" name="dp" id="file" class="file" accept="image/*">
+                </div>
+                <div class="rws">
+                    <input type="text" name="name" id="name" value="Athul Sabu" placeholder="Name" disabled> <i
+                        id="edit_pen" class="fa-solid fa-pen" onclick="edit_name()"></i>
+                </div>
+                <div class="rws">
+                    <span>E-mail</span> <input type="email" name="eamil" id="email" value="athulsabu324@gmail.com"
+                        placeholder="E-mail">
+                </div>
+                <di class="rws">
+                    <span>Phone</span> <input type="text" name="phone" id="phone" value="9656811507" placeholder="Phone"
+                        disabled>
+                </di>
+                <div class="rws">
+                    <input type="submit" id="save_btn" value="Save">
+                    <input type="button" value="Cancel" id="cancel_btn">
+                </div>
+            </form>
+
+        </div>
+
+    </section>
+</body>
+<script>
+    function edit_name() {
+        document.getElementById('name').style.border = '2px solid white';
+        document.getElementById('name').disabled = false;
+        document.getElementById('email').style.border = '2px solid white';
+        document.getElementById('email').disabled = false;
+        document.getElementById('phone').style.border = '2px solid white';
+        document.getElementById('phone').disabled
+        document.getElementById('edit_pen').style.display = 'none'
+    }
+    document.getElementById('save_btn').onclick = function () {
+        document.getElementById('name').style.border = 'none';
+        document.getElementById('name').disabled = true;
+        document.getElementById('email').style.border = 'none';
+        document.getElementById('email').disabled = true;
+        document.getElementById('phone').style.border = 'none';
+        document.getElementById('phone').disabled = true;
+        document.getElementById('edit_pen').style.display = 'inline'
+
+    }
+    document.getElementById('cancel_btn').onclick = function () {
+        document.getElementById('name').value = "Athul Sabu"
+        document.getElementById('name').style.border = 'none';
+        document.getElementById('name').disabled = true;
+        document.getElementById('email').style.border = 'none';
+        document.getElementById('email').disabled = true;
+        document.getElementById('phone').style.border = 'none';
+        document.getElementById('phone').disabled = true;
+        document.getElementById('edit_pen').style.display = 'inline'
+        document.getElementById('email').value = "athulsabu324@gmail.com"
+        document.getElementById('phone').value = "9656811507"
+    }
+
+    let file = document.getElementById('file')
+    let current_pic = document.getElementById('c_pic')
+    let upload_btn = document.getElementById('upload_btn')
+    file.addEventListener('change', function () {
+        const choosed_file = this.files[0];
+
+        if (choosed_file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function () {
+                current_pic.setAttribute('src', reader.result)
+            });
+            reader.readAsDataURL(choosed_file);
+        }
+
+    })
+</script>
+
+</html>
+
